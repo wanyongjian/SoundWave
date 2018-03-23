@@ -17,6 +17,7 @@
 		21B76CCA2064966700506C48 /* SoundWaveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B76CC92064966700506C48 /* SoundWaveUITests.m */; };
 		21B76CDD20649F4400506C48 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B76CDC20649F4400506C48 /* WaveView.m */; };
 		21B76CE020649F6000506C48 /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B76CDF20649F6000506C48 /* RecordController.m */; };
+		21B76CE72064CB9600506C48 /* Wave.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 21B76CE62064CB9600506C48 /* Wave.bundle */; };
 		50FE61ABAA7D5CDFB5C35E4A /* libPods-SoundWave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B62C33F1E87D1766CCC6792 /* libPods-SoundWave.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		21B76CDC20649F4400506C48 /* WaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveView.m; sourceTree = "<group>"; };
 		21B76CDE20649F6000506C48 /* RecordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
 		21B76CDF20649F6000506C48 /* RecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
+		21B76CE62064CB9600506C48 /* Wave.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Wave.bundle; sourceTree = "<group>"; };
 		4B62C33F1E87D1766CCC6792 /* libPods-SoundWave.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoundWave.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		519D0CEAA04BBEE0279659BF /* Pods-SoundWave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundWave.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundWave/Pods-SoundWave.release.xcconfig"; sourceTree = "<group>"; };
 		D3133ABD39445ABEB9D6B543 /* Pods-SoundWave.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundWave.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundWave/Pods-SoundWave.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				21B76CB02064966700506C48 /* LaunchScreen.storyboard */,
 				21B76CB32064966700506C48 /* Info.plist */,
 				21B76CB42064966700506C48 /* main.m */,
+				21B76CE62064CB9600506C48 /* Wave.bundle */,
 			);
 			path = SoundWave;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B76CE72064CB9600506C48 /* Wave.bundle in Resources */,
 				21B76CB22064966700506C48 /* LaunchScreen.storyboard in Resources */,
 				21B76CAF2064966700506C48 /* Assets.xcassets in Resources */,
 				21B76CAD2064966700506C48 /* Main.storyboard in Resources */,

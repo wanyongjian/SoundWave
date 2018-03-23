@@ -9,12 +9,16 @@
 #import "ViewController.h"
 #import "WaveView.h"
 #import <EZMicrophone.h>
+#import <EZAudioPlayer.h>
+#import <EZAudioFile.h>
 
-@interface ViewController ()
+@interface ViewController () <EZAudioPlayerDelegate>
 
 @property (nonatomic, strong) WaveView *waveView;
-@property (nonatomic, strong) EZMicrophone *microphone;
+//@property (nonatomic, strong) EZMicrophone *microphone;
 @property (nonatomic, strong) UIButton *startButton;
+@property (nonatomic, strong) EZAudioPlayer *player;
+@property (nonatomic, strong) EZAudioFile *audioFile;
 @end
 
 @implementation ViewController
@@ -38,10 +42,34 @@
 }
 
 - (void)startAction{
-    [self.microphone startFetchingAudio];
+//    [self.microphone startFetchingAudio];
+    [self.player playAudioFile:self.audioFile];
 }
 - (void)stopAction{
-    [self.microphone stopFetchingAudio];
+//    [self.microphone stopFetchingAudio];
+    [self.player pause];
+}
+- (EZAudioFile *)audioFile{
+    if (!_audioFile) {
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"testaudio" ofType:@"mp3"];
+//        NSURL *url = [NSURL fileURLWithPath:path];
+//        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"Wave.bundle/sound/testaudio.mp3"]];
+//        NSURL *url = [NSURL fileURLWithPath:path];
+        
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"Wave" ofType:@"bundle"]];
+
+        NSString *path = [[bundle resourcePath] stringByAppendingPathComponent:@"sound/test.m4a"];
+        NSURL *url = [NSURL URLWithString:path];
+        _audioFile = [EZAudioFile audioFileWithURL:url];
+    }
+    return _audioFile;
+}
+- (EZAudioPlayer *)player{
+    if (!_player) {
+
+        _player = [EZAudioPlayer audioPlayerWithDelegate:self];
+    }
+    return _player;
 }
 - (WaveView *)waveView{
     if(!_waveView) {
@@ -66,31 +94,38 @@
         _waveView.shouldMirror = YES;
         [_waveView setRollingHistoryLength:200];
         //创建麦克风
-        self.microphone = [EZMicrophone microphoneWithDelegate:self];
-        //设置输入设备
-        [self.microphone setDevice:[[EZAudioDevice inputDevices] firstObject]];
+//        self.microphone = [EZMicrophone microphoneWithDelegate:self];
+//        //设置输入设备
+//        [self.microphone setDevice:[[EZAudioDevice inputDevices] firstObject]];
     }
     return _waveView;
 }
-
+- (void)audioPlayer:(EZAudioPlayer *)audioPlayer playedAudio:(float **)buffer withBufferSize:(UInt32)bufferSize withNumberOfChannels:(UInt32)numberOfChannels inAudioFile:(EZAudioFile *)audioFile{
+        //线程安全的
+        //buffer[0]是左声道 。buffer[1]是右声道
+        __weak typeof (self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.waveView updateBuffer:buffer[0] withBufferSize:bufferSize];
+        });
+}
 #pragma mark - 麦克风代理
-//获取buffer流的音频数据信息
-- (void)microphone:(EZMicrophone *)microphone hasAudioReceived:(float **)buffer withBufferSize:(UInt32)bufferSize
-withNumberOfChannels:(UInt32)numberOfChannels {
-    //线程安全的
-    //buffer[0]是左声道 。buffer[1]是右声道
-    __weak typeof (self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf.waveView updateBuffer:buffer[0] withBufferSize:bufferSize];
-    });
-}
-
-//------------------------------------------------------------------------------
-//麦克风的AudioStreamBasicDescription流。这是非常有用的
-//当配置EZRecorder或告诉另一个组件/ /音频格式类型。
-- (void)microphone:(EZMicrophone *)microphone hasAudioStreamBasicDescription:(AudioStreamBasicDescription)audioStreamBasicDescription {
-    
-    [EZAudioUtilities printASBD:audioStreamBasicDescription];
-}
+////获取buffer流的音频数据信息
+//- (void)microphone:(EZMicrophone *)microphone hasAudioReceived:(float **)buffer withBufferSize:(UInt32)bufferSize
+//withNumberOfChannels:(UInt32)numberOfChannels {
+//    //线程安全的
+//    //buffer[0]是左声道 。buffer[1]是右声道
+//    __weak typeof (self) weakSelf = self;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [weakSelf.waveView updateBuffer:buffer[0] withBufferSize:bufferSize];
+//    });
+//}
+//
+////------------------------------------------------------------------------------
+////麦克风的AudioStreamBasicDescription流。这是非常有用的
+////当配置EZRecorder或告诉另一个组件/ /音频格式类型。
+//- (void)microphone:(EZMicrophone *)microphone hasAudioStreamBasicDescription:(AudioStreamBasicDescription)audioStreamBasicDescription {
+//
+//    [EZAudioUtilities printASBD:audioStreamBasicDescription];
+//}
 
 @end
