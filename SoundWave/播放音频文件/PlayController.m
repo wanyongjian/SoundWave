@@ -6,13 +6,13 @@
 //  Copyright © 2018年 wan. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "PlayController.h"
 #import "WaveView.h"
 #import <EZMicrophone.h>
 #import <EZAudioPlayer.h>
 #import <EZAudioFile.h>
 
-@interface ViewController () <EZAudioPlayerDelegate>
+@interface PlayController () <EZAudioPlayerDelegate>
 
 @property (nonatomic, strong) WaveView *waveView;
 //@property (nonatomic, strong) EZMicrophone *microphone;
@@ -21,7 +21,7 @@
 @property (nonatomic, strong) EZAudioFile *audioFile;
 @end
 
-@implementation ViewController
+@implementation PlayController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
