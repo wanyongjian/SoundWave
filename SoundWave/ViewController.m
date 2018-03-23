@@ -42,7 +42,6 @@
 }
 - (void)stopAction{
     [self.microphone stopFetchingAudio];
-    [self.waveView redraw];
 }
 - (WaveView *)waveView{
     if(!_waveView) {
