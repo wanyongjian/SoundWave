@@ -50,7 +50,8 @@
 - (EZAudioFile *)audioFile{
     if (!_audioFile) {
         NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"Wave" ofType:@"bundle"]];
-        NSString *path = [[bundle resourcePath] stringByAppendingPathComponent:@"sound/test.m4a"];
+//        NSString *path = [[bundle resourcePath] stringByAppendingPathComponent:@"sound/111.mp3"];
+        NSString *path = [[bundle resourcePath] stringByAppendingPathComponent:@"sound/111.mp3"];
         NSURL *url = [NSURL URLWithString:path];
         _audioFile = [EZAudioFile audioFileWithURL:url];
     }
@@ -60,6 +61,7 @@
     if (!_player) {
 
         _player = [EZAudioPlayer audioPlayerWithDelegate:self];
+        
     }
     return _player;
 }
