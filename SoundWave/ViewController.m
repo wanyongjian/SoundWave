@@ -61,6 +61,7 @@
     if (!_player) {
 
         _player = [EZAudioPlayer audioPlayerWithDelegate:self];
+        [_player setDevice:[EZAudioDevice outputDevices].lastObject];
         
     }
     return _player;
