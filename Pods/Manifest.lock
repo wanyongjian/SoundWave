@@ -5,15 +5,18 @@ PODS:
   - EZAudio/Full (1.1.2):
     - EZAudio/Core
     - TPCircularBuffer (~> 0.0)
+  - Masonry (1.1.0)
   - TPCircularBuffer (0.0.1)
 
 DEPENDENCIES:
   - EZAudio
+  - Masonry
 
 SPEC CHECKSUMS:
   EZAudio: 01373de2b1257b77be1bf13753fb1c4ea8a9777e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   TPCircularBuffer: 949e9632b9fb99b7274d7b2296ee22bff5841e35
 
-PODFILE CHECKSUM: 48ac3f138474b6655c29572b2bdeec1549cc5d36
+PODFILE CHECKSUM: 3b1402553939dbdb0e4a24b0e69634cbdfdbd228
 
 COCOAPODS: 1.4.0

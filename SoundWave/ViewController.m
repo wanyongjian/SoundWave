@@ -30,7 +30,7 @@
     [self.view addSubview:self.waveView];
     [self.view addSubview:self.startButton];
 //    [self.view addSubview:self.lineView];
-    
+    self.view.backgroundColor = UIColorFromRGB(0xf5f9ec);
 }
 
 - (UIView *)lineView{
@@ -112,7 +112,7 @@
         
         //声波颜色
 //        _waveView.color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-        _waveView.color = [UIColor darkGrayColor];
+        _waveView.color = [UIColor greenColor];
         _waveView.plotType = EZPlotTypeRolling;//声波类型
         _waveView.gain = 1.5; //波形大小比例，默认1.0
 //        _waveView.shouldFill = YES;
